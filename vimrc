@@ -150,5 +150,5 @@ if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
 endif
 
-let &t_Co=256
-colorscheme tomorrow-night-bright
+colorscheme base16-default
+set background=dark
