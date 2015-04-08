@@ -150,5 +150,12 @@ if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
 endif
 
+" Colorscheme
 set t_Co=256
 colorscheme tomorrow-night
+
+" Custom navigation
+nnoremap <Left> :tabprevious<CR>
+nnoremap <Right> :tabnext<CR>
+nnoremap <S-Left> :wincmd h<CR>
+nnoremap <S-Right> :wincmd l<CR>
