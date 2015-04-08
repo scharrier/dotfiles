@@ -98,3 +98,6 @@ _load_settings "$HOME/.zsh/configs"
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
