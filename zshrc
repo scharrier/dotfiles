@@ -101,3 +101,7 @@ _load_settings "$HOME/.zsh/configs"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+bindkey -e
+bindkey '[C' forward-word
+bindkey '[D' backward-word
