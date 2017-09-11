@@ -21,6 +21,11 @@
   rename-branch = !sh -c 'old=$(git current-branch) && git branch -m $old $1 && git push origin --set-upstream $1 && git push origin --delete $old' -
   st = status
   up = !git fetch origin && git rebase origin/master
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  lgdev = log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%>' --abbrev-commit --name-status --no-merges dev..
+  uncommit = reset --soft HEAD~1
+  unstage = reset HEAD
+  cleanup = !sh -c 'git branch --merged dev | grep -v "\\*dev" | xargs -n 1 git branch -d' -
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
@@ -32,3 +37,8 @@
   prune = true
 [include]
   path = ~/.gitconfig.local
+[user]
+	name = Sébastien Charrier
+	email = scharrier@gmail.com
+[log]
+	follow = true
