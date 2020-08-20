@@ -24,3 +24,6 @@ SAVEHIST=4096
 # awesome cd movements from zshkit
 setopt autocd autopushd pushdminus pushdsilent pushdtohome cdablevars
 DIRSTACKSIZE=5
+
+# Force english
+LANG=en_US
