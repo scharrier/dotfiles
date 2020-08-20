@@ -27,3 +27,10 @@ DIRSTACKSIZE=5
 
 # Force english
 LANG=en_US
+
+# load rbenv if available
+if which rbenv &>/dev/null ; then
+  eval "$(rbenv init - --no-rehash)"
+fi
+
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
