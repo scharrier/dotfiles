@@ -8,18 +8,6 @@ git_prompt_info() {
 setopt promptsubst
 export PS1='${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%c%{$reset_color%}$(git_prompt_info) %# '
 
-# load our own completion functions
-fpath=(~/.zsh/completion $fpath)
-
-# completion
-autoload -U compinit
-compinit
-
-# load custom executable functions
-for function in ~/.zsh/functions/*; do
-  source $function
-done
-
 # makes color constants available
 autoload -U colors
 colors
@@ -36,72 +24,3 @@ SAVEHIST=4096
 # awesome cd movements from zshkit
 setopt autocd autopushd pushdminus pushdsilent pushdtohome cdablevars
 DIRSTACKSIZE=5
-
-# Enable extended globbing
-setopt extendedglob
-
-# Allow [ or ] whereever you want
-unsetopt nomatch
-
-# vi mode
-bindkey -v
-bindkey "^F" vi-cmd-mode
-bindkey jj vi-cmd-mode
-
-# handy keybindings
-bindkey "^A" beginning-of-line
-bindkey "^E" end-of-line
-bindkey "^R" history-incremental-search-backward
-bindkey "^P" history-search-backward
-bindkey "^Y" accept-and-hold
-bindkey "^N" insert-last-word
-bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"
-
-# aliases
-[[ -f ~/.aliases ]] && source ~/.aliases
-
-# extra files in ~/.zsh/configs/pre , ~/.zsh/configs , and ~/.zsh/configs/post
-# these are loaded first, second, and third, respectively.
-_load_settings() {
-  _dir="$1"
-  if [ -d "$_dir" ]; then
-    if [ -d "$_dir/pre" ]; then
-      for config in "$_dir"/pre/**/*(N-.); do
-        . $config
-      done
-    fi
-
-    for config in "$_dir"/**/*(N-.); do
-      case "$config" in
-        "$_dir"/pre/*)
-          :
-          ;;
-        "$_dir"/post/*)
-          :
-          ;;
-        *)
-          if [ -f $config ]; then
-            . $config
-          fi
-          ;;
-      esac
-    done
-
-    if [ -d "$_dir/post" ]; then
-      for config in "$_dir"/post/**/*(N-.); do
-        . $config
-      done
-    fi
-  fi
-}
-_load_settings "$HOME/.zsh/configs"
-
-# Local config
-[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
-
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
-bindkey -e
-bindkey '[C' forward-word
-bindkey '[D' backward-word
