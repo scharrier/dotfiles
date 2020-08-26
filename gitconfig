@@ -26,6 +26,7 @@
   uncommit = reset --soft HEAD~1
   unstage = reset HEAD
   cleanup = !sh -c 'git branch --merged dev | grep -v "\\*dev" | xargs -n 1 git branch -d' -
+  br = branch --sort=-committerdate
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
