@@ -27,7 +27,7 @@
   unstage = reset HEAD
   cleanup = !sh -c 'git branch --merged | grep -v master | xargs -n 1 git branch -d' -
   br = branch --sort=-committerdate
-  split-head = "!f() { git reset --soft @~ && git reset $@ && git commit -C ORIG_HEAD; }; f"
+  remove-from-commit = "!f() { git reset --soft @~ && git reset $@ && git commit -C ORIG_HEAD; }; f"
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
@@ -51,3 +51,5 @@
 	process = git-lfs filter-process
 [pull]
 	rebase = true
+[gui]
+	encoding = utf-8
